@@ -36,7 +36,7 @@ class CabanaAdmin(admin.ModelAdmin):
         }),
         ("Detalle técnico", {
             "fields": ("descripcion", "costo_por_dia", "capacidad_maxima",
-                       "numero_camas", "servicios", "imagen")
+                    "numero_camas", "servicios", "imagen")
         }),
         ("Calificaciones (solo lectura)", {
             "fields": ("promedio_calificacion", "numero_resenas"),
@@ -58,7 +58,7 @@ class CabanaAdmin(admin.ModelAdmin):
 @admin.register(Promocion)
 class PromocionAdmin(admin.ModelAdmin):
     list_display = ("titulo", "cabana", "porcentaje_descuento",
-                     "fecha_inicio", "fecha_fin", "activa", "vigente")
+                "fecha_inicio", "fecha_fin", "activa", "vigente")
     list_filter = ("activa", "cabana")
     search_fields = ("titulo", "cabana__nombre")
     autocomplete_fields = ("cabana",)
@@ -68,7 +68,7 @@ class PromocionAdmin(admin.ModelAdmin):
 class MensajeContactoAdmin(admin.ModelAdmin):
     # RF-10: Moderación y respuesta de mensajes
     list_display = ("nombre", "correo", "cabana", "atendido",
-                     "publicado_en_blog", "fecha_envio")
+                    "publicado_en_blog", "fecha_envio")
     list_filter = ("atendido", "publicado_en_blog", "fecha_envio")
     search_fields = ("nombre", "correo", "mensaje")
     autocomplete_fields = ("cabana",)
