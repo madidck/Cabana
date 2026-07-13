@@ -1,0 +1,39 @@
+{% extends "encabezado.html" %}
+{% block titulo %}{{ cabana.nombre }} - Rentame{% endblock %}
+
+{% block contenido %}
+<section class="seccion-generica">
+    <div class="container">
+        <a href="{% url 'cabanas:catalogo' %}" class="text-decoration-none">&larr; Volver al catálogo</a>
+        <div class="row g-4 mt-2">
+            <div class="col-md-6">
+                {% if cabana.imagen %}
+                    <img src="{{ cabana.imagen.url }}" class="img-fluid rounded" alt="{{ cabana.nombre }}">
+                {% else %}
+                    <img src="https://images.unsplash.com/photo-1518602164578-cd0074062767?w=500" class="img-fluid rounded" alt="{{ cabana.nombre }}">
+                {% endif %}
+            </div>
+            <div class="col-md-6">
+                <h1 style="color: var(--verde-bosque);">{{ cabana.nombre }}</h1>
+                <p class="text-muted">{{ cabana.ubicacion }} &middot; Clave: {{ cabana.clave }}</p>
+                <p>{{ cabana.descripcion|default:"Sin descripción disponible." }}</p>
+                <ul class="list-unstyled">
+                    <li><i class="bi bi-people"></i> Capacidad: {{ cabana.capacidad_maxima }} personas</li>
+                    <li><i class="bi bi-moon-stars"></i> Camas: {{ cabana.numero_camas }}</li>
+                    <li><i class="bi bi-star-fill text-warning"></i> {{ cabana.promedio_calificacion|default:"Sin calificar" }} ({{ cabana.numero_resenas }} reseñas)</li>
+                </ul>
+                <h5>Servicios incluidos</h5>
+                <div class="d-flex flex-wrap gap-2 mb-3">
+                    {% for servicio in cabana.servicios.all %}
+                        <span class="badge bg-light text-dark border">{{ servicio.nombre }}</span>
+                    {% empty %}
+                        <span class="text-muted">Sin servicios registrados</span>
+                    {% endfor %}
+                </div>
+                <p class="precio-detalle fs-4 fw-bold">${{ cabana.costo_por_dia }} MXN / noche</p>
+                <a href="{% url 'cabanas:contacto' %}" class="btn btn-rentame">Solicitar informes</a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
