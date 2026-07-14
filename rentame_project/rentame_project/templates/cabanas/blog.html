@@ -1,0 +1,25 @@
+{% extends "encabezado.html" %}
+
+{% block titulo %}Rentame - Blog de dudas{% endblock %}
+
+{% block meta_descripcion %}Resolvemos las dudas más frecuentes de nuestros huéspedes sobre las cabañas Rentame.{% endblock %}
+
+
+{% block contenido %}
+
+    <section class="seccion-generica">
+        <div class="container" style="max-width: 750px;">
+            <h1 class="mb-4" style="color: var(--verde-bosque);">Preguntas frecuentes</h1>
+            {% for entrada in entradas %}
+            <div class="tarjeta-blog">
+                <p class="mb-1"><strong>{{ entrada.nombre }}</strong> preguntó sobre <em>{{ entrada.cabana|default:"nuestras cabañas" }}</em>:</p>
+                <p>{{ entrada.mensaje }}</p>
+                <p class="mb-0"><strong>Respuesta:</strong> {{ entrada.respuesta }}</p>
+            </div>
+            {% empty %}
+            <p>Aún no hay preguntas publicadas.</p>
+            {% endfor %}
+        </div>
+    </section>
+
+{% endblock %}

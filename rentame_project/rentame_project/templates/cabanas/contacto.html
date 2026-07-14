@@ -1,0 +1,44 @@
+{% extends "encabezado.html" %}
+{% block titulo %}Rentame - Contacto{% endblock %}
+
+{% block contenido %}
+<section class="seccion-generica">
+    <div class="container" style="max-width: 600px;">
+        <h1 class="mb-4" style="color: var(--verde-bosque);">¿Tienes dudas?</h1>
+
+        {% if enviado %}
+            <div class="alert alert-success">¡Gracias! Tu mensaje fue enviado, te responderemos pronto.</div>
+        {% endif %}
+
+        <form method="post">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label class="form-label">Nombre</label>
+                <input type="text" name="nombre" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Correo electrónico</label>
+                <input type="email" name="correo" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Teléfono (opcional)</label>
+                <input type="text" name="telefono" class="form-control">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Cabaña de interés</label>
+                <select name="cabana" class="form-select">
+                    <option value="">-- Selecciona una cabaña --</option>
+                    {% for cabana in cabanas %}
+                        <option value="{{ cabana.id }}">{{ cabana.nombre }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Mensaje</label>
+                <textarea name="mensaje" class="form-control" rows="4" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-rentame">Enviar</button>
+        </form>
+    </div>
+</section>
+{% endblock %}

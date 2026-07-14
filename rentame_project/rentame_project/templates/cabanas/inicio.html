@@ -1,0 +1,46 @@
+{% extends "encabezado.html" %}
+
+{% block titulo %}Rentame - Inicio{% endblock %}
+
+{% block meta_descripcion %}Renta la cabaña perfecta en Michoacán y vive la experiencia del bosque.{% endblock %}
+
+
+{% block contenido %}
+
+    <section class="hero" style="background-image: url('https://images.unsplash.com/photo-1449158743715-0a90ebb6d2d8?w=1600');">
+        <div class="container hero-content">
+            <h1 class="display-5 fw-bold">Cabañas para desconectarte</h1>
+            <p class="lead">Renta la cabaña perfecta en Michoacán y vive la experiencia del bosque.</p>
+            <a href="{% url 'cabanas:catalogo' %}" class="btn btn-rentame btn-lg mt-2">Ver catálogo</a>
+        </div>
+    </section>
+
+    <section class="seccion-catalogo">
+        <div class="container">
+            <h2 class="mb-4">Promociones y cabañas destacadas</h2>
+            <div class="row g-4">
+                {% for cabana in cabanas %}
+                <div class="col-12 col-sm-6 col-lg-3">
+                    <a href="{% url 'cabanas:detalle' cabana.clave %}" class="text-decoration-none text-reset">
+                        <div class="tarjeta-cabana h-100">
+                            {% if cabana.imagen %}
+                                <img src="{{ cabana.imagen.url }}" alt="{{ cabana.nombre }}">
+                            {% else %}
+                                <img src="https://images.unsplash.com/photo-1518602164578-cd0074062767?w=500" alt="{{ cabana.nombre }}">
+                            {% endif %}
+                            <div class="info">
+                                <strong>{{ cabana.nombre }}</strong>
+                                <small class="d-block">Capacidad: {{ cabana.capacidad_maxima }} personas | {{ cabana.ubicacion }}</small>
+                                <span class="precio">${{ cabana.costo_por_dia }} MXN / noche</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                {% empty %}
+                <p class="text-white">Aún no hay cabañas registradas. Agrégalas desde el panel de administración.</p>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+{% endblock %}

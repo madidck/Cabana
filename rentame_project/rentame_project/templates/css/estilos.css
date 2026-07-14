@@ -1,0 +1,403 @@
+:root {
+    --verde-bosque: #274a2e;
+    --verde-claro: #0c4d17;
+    --madera: #8b5e34;
+    --naranja: #d97b3f;
+    --lago: #52707d;
+    --lago-oscuro: #3a5560;
+    --crema: #faf6ef;
+    --sombra: 0 8px 30px rgba(0,0,0,0.12);
+    --sombra-hover: 0 12px 40px rgba(0,0,0,0.18);
+    --transicion: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --radio: 16px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    background-color: var(--crema);
+    color: #1a1a1a;
+    line-height: 1.6;
+}
+
+/* ========== HEADER ========== */
+.rentame-header {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+    box-shadow: 0 2px 20px rgba(0,0,0,0.04);
+    padding: 0.5rem 0;
+    transition: var(--transicion);
+}
+
+.rentame-header .navbar-brand {
+    color: var(--verde-bosque);
+    font-weight: 800;
+    font-size: 1.5rem;
+    letter-spacing: -0.5px;
+    transition: var(--transicion);
+}
+.rentame-header .navbar-brand:hover {
+    color: var(--verde-claro);
+    transform: scale(1.02);
+}
+
+.rentame-header .nav-link {
+    color: #444;
+    font-weight: 500;
+    padding: 0.6rem 1rem;
+    border-radius: 8px;
+    transition: var(--transicion);
+    position: relative;
+}
+.rentame-header .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 4px;
+    left: 50%;
+    width: 0;
+    height: 2.5px;
+    background: var(--naranja);
+    border-radius: 4px;
+    transition: var(--transicion);
+    transform: translateX(-50%);
+}
+.rentame-header .nav-link:hover {
+    color: var(--verde-bosque);
+    background: rgba(39, 74, 46, 0.06);
+}
+.rentame-header .nav-link:hover::after {
+    width: 60%;
+}
+.rentame-header .nav-link.active {
+    color: var(--verde-bosque);
+    font-weight: 700;
+}
+.rentame-header .nav-link.active::after {
+    width: 60%;
+}
+
+.nav-icon-link {
+    font-size: 1.3rem;
+    color: #555;
+    transition: var(--transicion);
+    padding: 0.4rem 0.6rem;
+    border-radius: 50%;
+}
+.nav-icon-link:hover {
+    color: var(--naranja);
+    background: rgba(217, 123, 63, 0.1);
+    transform: translateY(-2px);
+}
+
+/* ========== HERO ========== */
+.hero {
+    position: relative;
+    min-height: 420px;
+    background-size: cover;
+    background-position: center 30%;
+    display: flex;
+    align-items: center;
+    isolation: isolate;
+}
+.hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(39, 74, 46, 0.6) 0%, rgba(0,0,0,0.3) 100%);
+    z-index: 0;
+}
+.hero::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, transparent 40%, rgba(0,0,0,0.5) 100%);
+    z-index: 0;
+}
+.hero-content {
+    position: relative;
+    z-index: 1;
+    color: #fff;
+    text-shadow: 0 4px 30px rgba(0,0,0,0.3);
+    max-width: 650px;
+    padding: 2rem 0;
+}
+.hero-content h1 {
+    font-size: 3rem;
+    font-weight: 800;
+    letter-spacing: -1px;
+    margin-bottom: 0.5rem;
+}
+.hero-content p {
+    font-size: 1.2rem;
+    opacity: 0.92;
+    font-weight: 300;
+}
+
+/* ========== CATÁLOGO ========== */
+.seccion-catalogo {
+    background: linear-gradient(160deg, var(--verde-bosque) 0%, #1d3622 100%);
+    padding: 4rem 0;
+    position: relative;
+}
+.seccion-catalogo::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--naranja), var(--madera), var(--naranja));
+    background-size: 200% 100%;
+    animation: gradienteMovil 4s ease-in-out infinite;
+}
+@keyframes gradienteMovil {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+}
+
+.seccion-catalogo h2 {
+    color: #fff;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    position: relative;
+    display: inline-block;
+}
+.seccion-catalogo h2::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: 60px;
+    height: 3px;
+    background: var(--naranja);
+    border-radius: 4px;
+}
+
+.tarjeta-cabana {
+    border: none;
+    border-radius: var(--radio);
+    overflow: hidden;
+    background: #fff;
+    box-shadow: var(--sombra);
+    transition: var(--transicion);
+    height: 100%;
+}
+.tarjeta-cabana:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--sombra-hover);
+}
+.tarjeta-cabana img {
+    height: 190px;
+    object-fit: cover;
+    width: 100%;
+    border-radius: 0; /* anula el radio propio de .card-img-top de Bootstrap */
+    display: block;   /* quita el hueco fantasma que dejan los <img> por defecto */
+    transition: transform 0.5s ease;
+}
+.tarjeta-cabana:hover img {
+    transform: scale(1.04);
+}
+.tarjeta-cabana .info {
+    background: linear-gradient(135deg, var(--verde-bosque), var(--verde-claro));
+    color: #fff;
+    padding: 0.9rem 1.25rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.tarjeta-cabana .info .precio {
+    font-weight: 800;
+    font-size: 1.15rem;
+}
+.tarjeta-cabana .info .precio small {
+    font-weight: 400;
+    font-size: 0.75rem;
+    opacity: 0.8;
+}
+.tarjeta-cabana .cuerpo {
+    padding: 1.25rem;
+}
+.tarjeta-cabana .cuerpo h5 {
+    font-weight: 700;
+    color: var(--verde-bosque);
+    margin-bottom: 0.3rem;
+}
+.tarjeta-cabana .cuerpo p {
+    color: #666;
+    font-size: 0.92rem;
+    margin-bottom: 0.5rem;
+}
+.precio-detalle {
+    color: #d97b3f !important;
+    background-color: transparent;
+}
+/* ========== BOTONES ========== */
+.btn-rentame {
+    background: linear-gradient(135deg, var(--verde-bosque), var(--verde-claro));
+    color: #fff;
+    border: none;
+    padding: 0.6rem 1.8rem;
+    border-radius: 50px;
+    font-weight: 600;
+    transition: var(--transicion);
+    box-shadow: 0 4px 15px rgba(39, 74, 46, 0.3);
+}
+.btn-rentame:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 25px rgba(39, 74, 46, 0.4);
+    color: #fff;
+    background: linear-gradient(135deg, #1e3a23, var(--verde-claro));
+}
+.btn-rentame-outline {
+    background: transparent;
+    color: var(--verde-bosque);
+    border: 2px solid var(--verde-bosque);
+    padding: 0.6rem 1.8rem;
+    border-radius: 50px;
+    font-weight: 600;
+    transition: var(--transicion);
+}
+.btn-rentame-outline:hover {
+    background: var(--verde-bosque);
+    color: #fff;
+    transform: translateY(-2px);
+}
+
+/* ========== FOOTER ========== */
+.rentame-footer {
+    background: #f5efe6;
+    border-top: 1px solid rgba(0,0,0,0.05);
+    color: var(--verde-bosque);
+    padding: 2.5rem 0 1.5rem;
+}
+.rentame-footer h6 {
+    font-weight: 700;
+    color: var(--verde-bosque);
+    margin-bottom: 1rem;
+}
+.rentame-footer a {
+    color: #555;
+    text-decoration: none;
+    transition: var(--transicion);
+}
+.rentame-footer a:hover {
+    color: var(--naranja);
+    padding-left: 4px;
+}
+.rentame-footer .social-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: rgba(39, 74, 46, 0.08);
+    color: var(--verde-bosque);
+    transition: var(--transicion);
+}
+.rentame-footer .social-link:hover {
+    background: var(--verde-bosque);
+    color: #fff;
+    transform: translateY(-3px);
+    padding-left: 0;
+}
+
+/* ========== SECCIONES GENÉRICAS ========== */
+.seccion-generica {
+    padding: 4rem 0;
+}
+.seccion-generica h2 {
+    color: var(--verde-bosque);
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    position: relative;
+}
+.seccion-generica h2::after {
+    content: '';
+    position: absolute;
+    bottom: -6px;
+    left: 0;
+    width: 50px;
+    height: 3px;
+    background: var(--naranja);
+    border-radius: 4px;
+}
+
+.tarjeta-blog {
+    border-left: 4px solid var(--naranja);
+    background: #fff;
+    border-radius: 10px;
+    padding: 1.5rem;
+    margin-bottom: 1.25rem;
+    box-shadow: var(--sombra);
+    transition: var(--transicion);
+}
+.tarjeta-blog:hover {
+    box-shadow: var(--sombra-hover);
+    transform: translateX(4px);
+}
+.tarjeta-blog h5 {
+    color: var(--verde-bosque);
+    font-weight: 600;
+}
+
+/* ========== ACCESIBILIDAD ========== */
+a:focus-visible,
+button:focus-visible,
+.btn-rentame:focus-visible,
+.btn-rentame-outline:focus-visible {
+    outline: 3px solid var(--naranja);
+    outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 768px) {
+    .hero {
+        min-height: 300px;
+    }
+    .hero-content h1 {
+        font-size: 2rem;
+    }
+    .hero-content p {
+        font-size: 1rem;
+    }
+    .tarjeta-cabana img {
+        height: 150px;
+    }
+    .seccion-catalogo {
+        padding: 2.5rem 0;
+    }
+    .rentame-header .navbar-brand {
+        font-size: 1.2rem;
+    }
+}
+
+/* Deja que el tema controle el ancho, pero que tus elementos fluyan */
+.page-content {
+    background: transparent !important;
+    padding: 0 !important;
+}
+
+/* No fuerces el container a 100%, deja que Bootstrap lo gestione */
+.container {
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
