@@ -7,14 +7,14 @@ class ServicioAdmin(admin.ModelAdmin):
     search_fields = ("nombre",)
 
 class PromocionInline(admin.TabularInline):
-    """Permite crear/editar promociones directamente desde la cabaña (RF-09)."""
+    """promociones directamente desde la cabaña (RF-09)."""
     model = Promocion
     extra = 0
     fields = ("titulo", "porcentaje_descuento", "fecha_inicio", "fecha_fin", "activa")
 
 @admin.register(Cabana)
 class CabanaAdmin(admin.ModelAdmin):
-    # RF-08: CRUD completo de cabañas desde el panel de administración
+    
     list_display = (
         "clave", "nombre", "ubicacion", "costo_por_dia",
         "capacidad_maxima", "disponible", "promedio_calificacion",
@@ -60,7 +60,7 @@ class PromocionAdmin(admin.ModelAdmin):
 
 @admin.register(MensajeContacto)
 class MensajeContactoAdmin(admin.ModelAdmin):
-    # RF-10: Moderación y respuesta de mensajes
+    
     list_display = ("nombre", "correo", "cabana", "atendido",
                     "publicado_en_blog", "fecha_envio")
     list_filter = ("atendido", "publicado_en_blog", "fecha_envio")
