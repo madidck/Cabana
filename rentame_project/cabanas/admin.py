@@ -7,7 +7,7 @@ class ServicioAdmin(admin.ModelAdmin):
     search_fields = ("nombre",)
 
 class PromocionInline(admin.TabularInline):
-    """promociones directamente desde la cabaña (RF-09)."""
+    """promociones directamente desde la cabaña"""
     model = Promocion
     extra = 0
     fields = ("titulo", "porcentaje_descuento", "fecha_inicio", "fecha_fin", "activa")
