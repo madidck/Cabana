@@ -10,7 +10,6 @@ class Servicio(models.Model):
         blank=True,
         help_text="Nombre de ícono (ej. bi-wifi de Bootstrap Icons)"
     )
-
     class Meta:
         verbose_name = "Servicio"
         verbose_name_plural = "Servicios"
@@ -21,7 +20,7 @@ class Servicio(models.Model):
 
 
 class Cabana(models.Model):
-    """RF-01 / RF-02 / RF-08: Catálogo y CRUD de cabañas."""
+    """Catálogo y CRUD de cabañas."""
     clave = models.CharField(max_length=10, unique=True, help_text="Clave interna, ej. CAB-001")
     nombre = models.CharField(max_length=100)
     ubicacion = models.CharField(max_length=100, default="Mazamitla")
@@ -39,7 +38,6 @@ class Cabana(models.Model):
     numero_resenas = models.PositiveIntegerField(default=0)
     fecha_registro = models.DateTimeField(auto_now_add=True)
     fecha_actualizacion = models.DateTimeField(auto_now=True)
-
     class Meta:
         verbose_name = "Cabaña"
         verbose_name_plural = "Cabañas"
@@ -50,7 +48,7 @@ class Cabana(models.Model):
 
 
 class Promocion(models.Model):
-    """RF-03 / RF-09: Promociones vigentes del mes."""
+    """Promociones vigentes del mes."""
     cabana = models.ForeignKey(Cabana, on_delete=models.CASCADE, related_name="promociones")
     titulo = models.CharField(max_length=100)
     descripcion = models.TextField(blank=True)
@@ -74,7 +72,7 @@ class Promocion(models.Model):
 
 
 class MensajeContacto(models.Model):
-    """RF-05 / RF-10: Formulario de dudas y moderación de mensajes."""
+    """Formulario de dudas y moderación de mensajes."""
     nombre = models.CharField(max_length=100)
     correo = models.EmailField()
     telefono = models.CharField(max_length=20, blank=True)
