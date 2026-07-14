@@ -14,7 +14,7 @@ class PromocionInline(admin.TabularInline):
 
 @admin.register(Cabana)
 class CabanaAdmin(admin.ModelAdmin):
-    # RF-08: CRUD completo de cabañas desde el panel de administración
+    
     list_display = (
         "clave", "nombre", "ubicacion", "costo_por_dia",
         "capacidad_maxima", "disponible", "promedio_calificacion",
@@ -60,7 +60,7 @@ class PromocionAdmin(admin.ModelAdmin):
 
 @admin.register(MensajeContacto)
 class MensajeContactoAdmin(admin.ModelAdmin):
-    # RF-10: Moderación y respuesta de mensajes
+    
     list_display = ("nombre", "correo", "cabana", "atendido",
                     "publicado_en_blog", "fecha_envio")
     list_filter = ("atendido", "publicado_en_blog", "fecha_envio")
