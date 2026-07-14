@@ -3,7 +3,7 @@ from django.utils import timezone
 
 
 class Servicio(models.Model):
-    """Catálogo de servicios que puede incluir una cabaña (Wi-Fi, jacuzzi, etc.)"""
+    """Catálogo de servicios que puede incluir una cabaña"""
     nombre = models.CharField(max_length=50, unique=True)
     icono = models.CharField(
         max_length=50,
